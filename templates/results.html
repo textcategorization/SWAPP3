@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<!-- Title -->
+    <title>UTCS</title>
+  </head>
+
+  <!-- Body -->
+	<div class="container">
+  	<div class="bg-light container-fluid">
+
+	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="#">UTCS</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">	</ul>
+		<form class="form-inline my-2 my-lg-0" action="http://localhost:5000/logout" method="POST">
+
+		  <button class="btn btn-primary my-2 my-sm-0" type="submit" value="submit">Logout</button>
+		</form>
+	  </div>
+	</nav>
+
+	<h6> Step 1: Upload Text </h6>
+       <form class="md-form" action = "http://localhost:5000/analyze_text" method = "POST" enctype = "multipart/form-data">
+            <div class="file-field">
+            <div class="btn btn-primary float-left">
+             <input type="file">
+             <input type = "submit"/>
+         	</div>
+         	</div>
+       </form>
+        </br>
+        </br>
+
+    </form>
+	<h6> Step 2: Choose Vectorizer Method and Model</h6>
+	 <!--Returned Data From Panda Frame -->
+	 {% for data in data_frame %}
+     	{{ data|safe }}
+	 {% endfor %}
+
+	 <p> Description of Data: </p>
+		{{ df_desc}}
+	 <!-- Choose Vectorization -->
+
+	<h6>Choose Vectorization Option</h6>
+	 <form class="md-form" action = "http://localhost:5000/vectorizer" method = "POST">
+		<div class="form-check form-check-inline" >
+		<input class="form-check-input" type="checkbox" id="TFIDF"  value="TFIDF">
+		 <label class="form-check-label" for="TFIDF"> TF-IDF</label>
+		</div>
+		<div class="form-check form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"disabled>
+		  <label class="form-check-label" for="inlineCheckbox2">TBD</label>
+		</div>
+		<div class="form-check form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+		  <label class="form-check-label" for="inlineCheckbox3">TBD</label>
+		</div>
+		</br>
+			<button class="btn btn-primary" type="analyze">Submit</button>
+  </form>
+
+	<p>Vectorization Results </p>
+	{% for vecdata in vec_data %}
+
+			{{ vecdata }}
+	{% endfor %}
+
+	<p>Vectorization Vocab </p>
+	 {% for vocab in vec_vocab %}
+
+		{{ vocab }}
+
+	{% endfor %}
+
+
+	<!-- Select Algorithm -->
+	<h6> Step 3: View Model Results </h6>
+	<nav>
+	  <div class="nav nav-tabs" id="nav-tabs" role="tablist">
+		<a class="nav-item nav-link active" id="nav-k-means-tab" data-toggle="tab" href="#nav-k-means" role="tab" aria-controls="nav-k-means" aria-selected="true">K-Means</a>
+		<a class="nav-item nav-link" id="nav-svm-tab" data-toggle="tab" href="#nav-svm" role="tab" aria-controls="nav-svm" aria-selected="false">SVM</a>
+		<a class="nav-item nav-link" id="nav-dnn-tab" data-toggle="tab" href="#nav-dnn" role="tab" aria-controls="nav-dnn" aria-selected="false">Deep Neural Network</a>
+	  </div>
+	</nav>
+
+
+	<div class="tab-content" id="nav-tab-content">
+	<div class="tab-pane fade show active" id="nav-k-means" role="tabpanel" aria-labelledby="nav-k-means-tab">
+	 <div class="card-body">
+		 <h5 class="card-title"> K-Means Results </h5>
+		 <p> Cluster Data: </p>
+
+		  <!--Cluster Returned Data From Panda Frame -->
+		 {% for km_data in km_data_frame %}
+			{{ km_data|safe }}
+		 {% endfor %}
+
+
+		 <p> Description of Data: </p>
+		 	{{ km_df_desc}}
+		 <p>Accuracy</p>
+		 	{{ km_acc }}
+		 <p>Execution Time</p>
+		 	{{ km_time }}
+
+	  </div>
+	</div>
+	  <div class="tab-pane fade" id="nav-svm" role="tabpanel" aria-labelledby="nav-svm-tab">
+		<div class="card-body">
+		<h5 class="card-title"> SVM Results </h5>
+		<p class="card-text">Accuracy</p>
+
+			{{ svm_acc }}
+
+		<p>Execution Time</p>
+			{{ svm_exec }}
+	  	</div>
+	  </div>
+	  <div class="tab-pane fade" id="nav-dnn" role="tabpanel" aria-labelledby="nav-dnn-tab">
+	  	<div class="card-body">
+			<h5 class="card-title"> Deep Neural Network Results </h5>
+
+		  <!--DL Returned Data From Panda Frame -->
+
+			 {% for dl_data in dl_data_frame %}
+				{{ dl_data|safe }}
+			 {% endfor %}
+
+			 <p> Description of Data: </p>
+				{{ dl_df_desc}}
+
+			 <p>Accuracy</p>
+				{{ dl_acc }}
+
+			 <p>Execution Time</p>
+				{{ dl_time }}
+		</div>
+	  </div>
+	</div>
+	</div>
+	</div>
+	</br>
+	</div>
+	</div>
+    </body>
+
+</html>

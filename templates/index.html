@@ -1,0 +1,158 @@
+<!-- Using bootstrap framework -->
+<!doctype html>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<!-- Title -->
+    <title>UTCS</title>
+  </head>
+
+  <!-- Body -->
+
+  <body>
+    <div class="bg-light container-fluid">
+
+	<div>
+
+	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="#">UTCS</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapsef" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item active">
+			<a class="nav-link" href="#demo">Demo <span class="sr-only">(current)</span></a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#headingTwo">Features</a>
+		  </li>
+		   </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Create Account</a>
+		  </li>
+		   </li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0" form action="http://localhost:5000/login" method="POST">
+		  <input class="form-control mr-sm-2" type="username" placeholder="username" name="username" value="{{ request.form.username }}">
+		  <input class="form-control mr-sm-2" type="password" placeholder="password" name="password" value="{{ request.form.password }}">
+		  <button class="btn btn-primary my-2 my-sm-0" type="submit" value="Login">Login</button>
+		</form>
+        </div>
+       </nav>
+        {% if error %}
+        <p class="alert alert-danger" role="alert"><strong>Error:</strong> {{ error }}
+        {% endif %}
+		<!-- Header -->
+		<div class="jumbotron">
+		  <h1 class="display-4">UTCS</h1>
+		  <p class="lead">Unsupervised Text Categorization Software</p>
+		  <hr class="my-4">
+		  <p></p>
+		  <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
+		</div>
+		<!-- Demo -->
+		<div class="card" id="demo">
+		  <h5 class="card-header">Demo</h5>
+		  <div class="card-body">
+              <!-- 21:9 aspect ratio -->
+              <div class="container">
+                  <!-- Content here -->
+             <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oznr-1-poSU" allowfullscreen></iframe>
+            </div>
+			<h5 class="card-title">Special title treatment</h5>
+			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+		  </div>
+		</div>
+        </div>
+
+		<!-- Use cases -->
+		<div class="accordion" id="accordionExample">
+		  <div class="card">
+			<div class="card-header" id="headingOne">
+			  <h2 class="mb-0">
+				<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				  Algorithm Features
+				</button>
+			  </h2>
+			</div>
+			<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+			  <div class="card-body">
+				K-Means Algorithm
+				  <br>
+				  K-Means clustering is a machine learning clustering technique used to simplify large datasets into smaller and simple datasets. Distinct patterns are evaluated, and similar data sets are grouped together. The variable K represents the number of groups in the data.
+				  The K-Means algorithm clusters data by trying to separate samples in n groups of equal variance, minimizing a criterion known as the inertia or within-cluster sum-of-squares. This algorithm requires the number of clusters to be specified. It scales well to large number of samples and has been used across a large range of application areas in many different fields.
+				<br>
+				<br>
+				SVM Algorithm
+				<br>
+				A support vector machine is a discriminative classifier formally defined by a separating hyperplane.
+				A hyperplane is a line that splits the input variable space. In SVM, a hyperplane is selected to best separate the points in the input variable space by their class, either class 0 or class 1.
+				In two-dimensions, you can visualize this as a line and let's assume that all of our input points can be completely separated by this line. The SVM learning algorithm finds the coefficients that results in the best separation of the classes by the hyperplane.
+				The distance between the hyperplane and the closest data points is referred to as the margin. The best or optimal hyperplane that can separate the two classes is the line that has the largest margin.
+				Only these points are relevant in defining the hyperplane and in the construction of the classifier.
+				These points are called the support vectors. They support or define the hyperplane.
+				In practice, an optimization algorithm is used to find the values for the coefficients that maximizes the margin.
+				This algorithm became popular because of its success in handwritten digit recognition
+				<br>
+				<br>
+				Deep Learning Algorithm
+				<br>
+			    Deep learning is a machine learning technique that teaches a computer to filter inputs (observations in the form of images, text, or sound) through layers in order to learn how to predict and classify information.
+				Deep learning is inspired by the way that the human brain filters information and attempts to mimic the activity in layers of neurons in the neocortex.
+
+			  </div>
+			</div>
+		  </div>
+		  <div class="card">
+			<div class="card-header" id="headingTwo">
+			  <h2 class="mb-0">
+				<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				  Vectorization Features
+				  <br>
+				</button>
+			  </h2>
+			</div>
+		   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+		     <div class="card-body">
+			 Vectorization can be used to convert a string into numerical data. The method of vectorization we are using in the program is known as
+			 TF-IDF (Term Frequency-Inverse Document Frequency). TF-IDF is a numerical statistic that demonstrates how important a word is to a corpus.
+			 </div>
+			</div>
+		  </div>
+		  <div class="card">
+			<div class="card-header" id="headingThree">
+			  <h2 class="mb-0">
+				<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				 Analyze Features
+				</button>
+			  </h2>
+			 </div>
+		  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+			  <div class="card-body">
+				  We are using accuracy and execution time to analyze our algorithms.
+			  </div>
+			</div>
+		  </div>
+		</div>
+	   </div>
+    </div>
+  </body>
+	<footer>
+
+	</footer>
+
+</html>
